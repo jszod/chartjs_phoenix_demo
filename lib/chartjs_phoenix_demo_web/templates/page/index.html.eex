@@ -1,0 +1,13 @@
+<section class="phx-hero">
+ <h2>Sample Pie Chart</h2>
+</section>
+<div class"chart-container" style="position: relative; height:40vh; width:80vw">
+    <canvas id="pieChart"></canvas>
+</div>
+
+<%# Set the data for the chart, make sure it's encoded properly %>
+<script type="text/javascript">
+    window.chart_data = <%= raw(Jason.encode!(@chart_data)) %>
+</script>
+
+<script src='<%= Routes.static_path(@conn, "/js/pie_chart_demo.js") %>' type="text/javascript"></script>
