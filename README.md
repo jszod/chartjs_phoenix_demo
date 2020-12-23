@@ -32,6 +32,15 @@ $ npm install chart.js --save
 
 In folder `/assets/js` create a file named `pie_chart_demo.js`. You can name this file anything you want. This file contains the code to generate the demo pie chart.
 
+Add a variable that will hold the data supplied by the controller. In this example the variable is `chart_data`
+
+```
+datasets: [{
+            // This variable will contain the data for the chart at runtime
+            data: chart_data,
+            .....
+```
+
 
 ## Update Webpack.config.js
 
@@ -47,7 +56,26 @@ entry: {
 ```    
 ## Update controller to get and assign chart data
 
+Assign the chart data in the controller. In this example the variable is set for the index page
+
+```
+ def index(conn, _params) do
+    conn
+    |> assign(:chart_data, [70, 30])
+    |> render("index.html")
+  end
+```  
+
+
 ## Create a template to display the sample pie chart
+
+Add a canvas element where the chart will be displayed
+
+```
+<div class"chart-container" style="position: relative; height:40vh; width:80vw">
+    <canvas id="pieChart"></canvas>
+</div>
+```
 
 Set the chart data variable in the template. Make sure to properly encode the data as shown below. Make sure the variable set in the template is the same as the variable in the chart's js.
 
@@ -58,3 +86,7 @@ Set the chart data variable in the template. Make sure to properly encode the da
 ```
 
 
+Include the script that generates the chart
+```
+<script src='<%= Routes.static_path(@conn, "/js/pie_chart_demo.js") %>' type="text/javascript"></script>
+```

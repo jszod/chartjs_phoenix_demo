@@ -8,12 +8,8 @@ var ctx = document.getElementById("pieChart").getContext("2d")
 var MyChart = new Chart(ctx, {
     type: 'pie',
     data: {
-        labels: [],
+        // labels: [],
         datasets: [{
-            // data: [
-            // 70,
-            // 30
-            // ],
             // This variable will contain the data for the chart at runtime
             data: chart_data,
             backgroundColor: [
